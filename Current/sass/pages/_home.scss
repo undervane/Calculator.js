@@ -1,0 +1,67 @@
+
+/* MAIN PAGE */
+
+.background{
+
+    width: 100vw;
+    height: 100vh;
+
+    background: linear-gradient(154deg, #43a0f4, #3abc91, #743abc);
+    background-size: 600% 600%;
+
+    -webkit-animation: gradientAnimation 20s ease infinite;
+    -moz-animation: gradientAnimation 20s ease infinite;
+    animation: gradientAnimation 20s ease infinite;
+
+}
+
+    @-webkit-keyframes gradientAnimation {
+        0%{background-position:23% 0%}
+        50%{background-position:78% 100%}
+        100%{background-position:23% 0%}
+    }
+
+    @-moz-keyframes gradientAnimation {
+        0%{background-position:23% 0%}
+        50%{background-position:78% 100%}
+        100%{background-position:23% 0%}
+    }
+
+    @keyframes gradientAnimation { 
+        0%{background-position:23% 0%}
+        50%{background-position:78% 100%}
+        100%{background-position:23% 0%}
+    }
+
+.container{
+
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+#advanced{
+
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(31, 31, 31);
+    opacity: 0.8;
+
+    p{
+
+        text-align: center;
+
+    }
+
+    &:hover{
+
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+
+    }
+
+}

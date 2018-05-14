@@ -1,0 +1,207 @@
+/* ----- TOC ----- 
+
+    1. General
+    2. Main Page
+    3. Calculator
+
+   --------------- */
+/* GENERAL */
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
+/* line 4, E:/Projects/Calculadora/sass/base/_general.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* line 13, E:/Projects/Calculadora/sass/base/_general.scss */
+.overlay {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* MAIN PAGE */
+/* line 4, E:/Projects/Calculadora/sass/pages/_home.scss */
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(154deg, #43a0f4, #3abc91, #743abc);
+  background-size: 600% 600%;
+  -webkit-animation: gradientAnimation 20s ease infinite;
+  -moz-animation: gradientAnimation 20s ease infinite;
+  animation: gradientAnimation 20s ease infinite;
+}
+
+@-webkit-keyframes gradientAnimation {
+  0% {
+    background-position: 23% 0%;
+  }
+  50% {
+    background-position: 78% 100%;
+  }
+  100% {
+    background-position: 23% 0%;
+  }
+}
+
+@-moz-keyframes gradientAnimation {
+  0% {
+    background-position: 23% 0%;
+  }
+  50% {
+    background-position: 78% 100%;
+  }
+  100% {
+    background-position: 23% 0%;
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 23% 0%;
+  }
+  50% {
+    background-position: 78% 100%;
+  }
+  100% {
+    background-position: 23% 0%;
+  }
+}
+
+/* line 36, E:/Projects/Calculadora/sass/pages/_home.scss */
+.container {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+/* line 45, E:/Projects/Calculadora/sass/pages/_home.scss */
+#advanced {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #1f1f1f;
+  opacity: 0.8;
+}
+
+/* line 54, E:/Projects/Calculadora/sass/pages/_home.scss */
+#advanced p {
+  text-align: center;
+}
+
+/* line 60, E:/Projects/Calculadora/sass/pages/_home.scss */
+#advanced:hover {
+  cursor: pointer;
+  color: black;
+}
+
+/* CALCULATOR */
+/* line 4, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+#calculator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  transform: perspective(1px) scale(1) translate(-50%, -52%);
+  transform-origin: 0% 0%;
+  animation: 2s ease-in-out 0s 1 fadeInRotate;
+}
+
+/* line 17, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.button {
+  cursor: pointer;
+}
+
+/* line 23, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.no-select {
+  user-select: none;
+}
+
+/* line 29, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+#Additional {
+  transform: translate(0, 0);
+  animation: 0.5s ease-out 0s 1 close;
+}
+
+/* line 36, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+#Calculator-SVG {
+  transform: translate(200px, 0);
+  animation: 0.5s ease-out 0s 1 smallView;
+}
+
+/* line 43, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.expandView {
+  transform: translate(0, 0) !important;
+  animation: 0.5s ease-out 0s 1 bigView !important;
+}
+
+/* line 50, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.arrow-hidden {
+  visibility: hidden;
+}
+
+/* line 56, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.open {
+  transform: translate(395px, 0) !important;
+  animation: 0.5s ease-out 0s 1 expand !important;
+}
+
+/* line 63, E:/Projects/Calculadora/sass/modules/_calculator.scss */
+.focus {
+  stroke: #daee21;
+  stroke-width: 3px;
+}
+
+@keyframes smallView {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(200px, 0);
+  }
+}
+
+@keyframes bigView {
+  0% {
+    transform: translate(200px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(395px, 0) !important;
+  }
+}
+
+@keyframes close {
+  0% {
+    transform: translate(395px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeInRotate {
+  0% {
+    transform: perspective(1px) rotateZ(-5deg) scale(0.8) translate(-50%, -52%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1px) rotateZ(0deg) scale(1) translate(-50%, -52%);
+  }
+}
+
+/*# sourceMappingURL=../css/main.map */

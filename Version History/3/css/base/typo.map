@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../../sass/base/typo.css",
+	"sources": [
+		"../../sass/base/typo.scss"
+	],
+	"sourcesContent": [
+		"\r\n@import url('https://fonts.googleapis.com/css?family=Roboto:500');"
+	],
+	"mappings": "AACA,OAAO,CAAC,yDAAI",
+	"names": []
+}

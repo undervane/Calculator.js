@@ -1,0 +1,150 @@
+
+/* CALCULATOR */
+
+#calculator{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    opacity: 1;
+    transform: perspective(1px) scale(1) translate(-50%, -52%);
+    transform-origin: 0% 0%;
+    animation: 2s ease-in-out 0s 1 fadeInRotate;
+
+}
+
+.button{
+
+    cursor: pointer;
+
+}
+
+.no-select {
+
+    user-select: none;
+
+}
+
+#Additional{
+
+    transform: translate(0, 0);
+    animation: 0.5s ease-out 0s 1 close;
+
+}
+
+#Calculator-SVG{
+
+    transform: translate(200px, 0);
+    animation: 0.5s ease-out 0s 1 smallView;
+
+}
+
+.expandView{
+
+    transform: translate(0, 0) !important;
+    animation: 0.5s ease-out 0s 1 bigView !important;
+
+}
+
+.arrow-hidden{
+
+    visibility: hidden;
+
+}
+
+.open{
+
+    transform: translate(395px, 0) !important;
+    animation: 0.5s ease-out 0s 1 expand !important;
+
+}
+
+.focus{
+
+    stroke: #daee21;
+    stroke-width: 3px;
+
+}
+
+@keyframes smallView{
+
+    0%{
+
+        transform: translate(0, 0);
+
+    }
+
+    100%{
+
+        transform: translate(200px, 0);
+
+    }
+
+}
+
+@keyframes bigView{
+
+    0%{
+
+        transform: translate(200px, 0);
+
+    }
+
+    100%{
+
+        transform: translate(0, 0);
+
+    }
+
+}
+
+@keyframes expand{
+
+    0%{
+
+        transform: translate(0, 0);
+
+    }
+
+    100%{
+
+        transform: translate(395px, 0) !important;
+
+    }
+
+}
+
+@keyframes close{
+
+    0%{
+
+        transform: translate(395px, 0);
+
+    }
+
+    100%{
+
+        transform: translate(0, 0);
+
+    }
+
+}
+
+
+@keyframes fadeInRotate {
+
+    0% {
+        transform: perspective(1px) rotateZ(-5deg) scale(0.8) translate(-50%, -52%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: perspective(1px) rotateZ(0deg) scale(1) translate(-50%, -52%);
+    }
+}
+
