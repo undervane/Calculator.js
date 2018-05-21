@@ -14,13 +14,9 @@ function input(key){
 
     if (key in numbers){
 
-        if (manageExceptions(numbers[key])){
+        operations.current().text += numbers[key];
 
-            operations.current().text += numbers[key];
-
-            main.update();
-
-        }
+        main.update();
 
     } else if (key in actions){
 
@@ -57,7 +53,7 @@ function input(key){
     }
 }
 
-// Exception Handling
+// Add ANS to main screen
 
 function getAns(){
 
@@ -141,7 +137,6 @@ function move(direction, display){
             positionIndicator();
     
         }
-
     }
 }
 
@@ -221,10 +216,13 @@ function expand(){
 
 /* ------- CODE EXECUTION STARTS HERE ------- */
 
-var main = new Display(9, "main");
-var ans = new Display(4, "additional");
+var main = new DisplayController(9, "main-input", true);
+var ans = new DisplayController(4, "additional-input");
+var displays = [main, ans];
 
-main.object = operations.new();
+var operations = new Operations;
+
+main.object = operations.create();
 
 main.onDisplay = "0";
 ans.onDisplay = "0";

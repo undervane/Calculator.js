@@ -5,12 +5,21 @@ class Operation {
 
         this.text = "";
         this.mode = 'input';
-
-        this.numbers = [];
-        this.operators = [];
-        this.groups = [];
-
         this.result = undefined;
+
+    }
+
+    get(){
+
+        if (mode == 'input'){
+
+            return this.text;
+
+        } else if (this.mode == 'result'){
+
+            return this.result;
+
+        }
 
     }
 

@@ -1,10 +1,14 @@
 
-var operations = {
+class OperationController {
     
-    records : [],
-    focus: undefined,
+    constructor(){
 
-    get: function(record){
+        this.records = [];
+        this.focus = undefined;
+
+    }
+
+    get(record){
 
         let length = this.records.length;
 
@@ -12,9 +16,9 @@ var operations = {
 
         return this.records[position];
 
-    },
+    }
 
-    new: function(){
+    create(){
 
         if (this.records[0] != undefined){
 
@@ -31,34 +35,15 @@ var operations = {
 
         return newOperation;
 
-    },
+    }
 
-    current: function(){
+    current(){
 
         return this.records[0];
 
-    },
+    }
 
-    deleteLast: function(){
-
-        let lastDeleted = this.current().text.slice(0, -1);
-        this.current().text = lastDeleted;
-    
-        if (this.current().text == ""){
-    
-            main.onDisplay = "0";
-    
-        } else {
-    
-            main.update();
-    
-        }
-    
-        positionIndicator();
-    
-    },
-
-    delete: function(input){
+    delete(input){
 
         switch (input){
 
@@ -75,7 +60,20 @@ var operations = {
                 main.object = this.records[0];
                 break;
 
-            case 'last': this.deleteLast(); break;
+            case 'last': 
+            
+                let lastDeleted = this.current().text.slice(0, -1);
+                this.current().text = lastDeleted;
+            
+                if (this.current().text == ""){
+            
+                    main.onDisplay = "0";
+            
+                } else { main.update(); }
+            
+                positionIndicator();
+
+            break;
 
         }
 
