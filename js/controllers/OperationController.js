@@ -1,21 +1,44 @@
 
-class OperationController {
+class OperationController{
     
     constructor(){
 
-        this.records = [];
-        this.focus = undefined;
+        this.records = [new Operation];
+        this.position = 0;
 
     }
 
-    get(record){
+    input(text){
 
-        let length = this.records.length;
+        //Continue working here
 
-        let position = length - record;
+    }
+
+    change(direction){
+
+        let length = this.records.length - 1;
+
+        switch (direction){
+
+            case up: position == length ? null : position++
+            case down: position == 0 ? null : position--
+
+        }
 
         return this.records[position];
+    }
 
+    get(mode){
+
+        switch (mode){
+
+            case 'input':
+                return this.current().text;
+
+            case 'result':
+                return this.current().result;
+
+        }
     }
 
     create(){
@@ -25,7 +48,7 @@ class OperationController {
             let current = this.records[0];
             current.position = 0;
 
-            this.focus = this.records[0];
+            this.current = this.records[0];
 
         }
 
@@ -39,7 +62,9 @@ class OperationController {
 
     current(){
 
-        return this.records[0];
+        let length = this.records.length - 1;
+
+        return this.records[length];
 
     }
 
@@ -48,16 +73,15 @@ class OperationController {
         switch (input){
 
             case 'current': 
-            
-                this.records[0] = new Operation; 
-                main.object = this.records[0];
+
+                let length = this.records.length - 1;
+                this.records[length] = new Operation;
                 break;
 
             case 'all': 
             
-                this.records = []; 
-                this.records[0] = new Operation; 
-                main.object = this.records[0];
+                this.records = [];
+                this.records[0] = new Operation;
                 break;
 
             case 'last': 
@@ -76,7 +100,5 @@ class OperationController {
             break;
 
         }
-
     }
-
 }

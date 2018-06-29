@@ -5,7 +5,7 @@
 
     <title>Calculator.js</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="css/main.min.css" type="text/css"/>
 
 </head>
 
@@ -46,13 +46,13 @@
                 <path d="M889 405H291v585c0 53.625 43.875 97.5 97.5 97.5h403c53.625 0 97.5-43.875 97.5-97.5V405z" fill="#484848"/>
                 <path d="M791.5 112.5h-403c-53.625 0-97.5 43.875-97.5 97.5v219.375h598V210c0-53.625-43.875-97.5-97.5-97.5z" fill="#373737"/>
               </g>
-              <g id="Additional Screen" class="screen" onclick="focusDisplay('ans')">
-                <path id="additional-screen" d="M791.5 356.25H575.375c-14.625 0-24.375-9.75-24.375-24.375V210c0-14.625 9.75-24.375 24.375-24.375H791.5c14.625 0 24.375 9.75 24.375 24.375v121.875c0 14.625-9.75 24.375-24.375 24.375z" fill="#9CCC65"/>
-                <text transform="translate(579.694 305.852)" id="additional-input" class="no-select" font-family="Open Sans, sans-serif" font-size="90" font-weight="400" fill="#3f3d3d">
+              <g id="ans" class="screen">
+                <path id="ans-screen" d="M791.5 356.25H575.375c-14.625 0-24.375-9.75-24.375-24.375V210c0-14.625 9.75-24.375 24.375-24.375H791.5c14.625 0 24.375 9.75 24.375 24.375v121.875c0 14.625-9.75 24.375-24.375 24.375z" fill="#9CCC65"/>
+                <text transform="translate(579.694 305.852)" id="additional-input" class="no-select input" font-family="Open Sans, sans-serif" font-size="90" font-weight="400" fill="#3f3d3d">
                   0
                 </text>
-                <path id="ad-leftArrow" class="arrow-hidden" d="M562 271.5l3.75-7.25 3.75-7.25v29l-3.75-7.25-3.75-7.25z" fill="#3F3D3D"/>
-                <path id="ad-rightArrow" class="arrow-hidden" d="M807.5 271.5l-3.75 7.25L800 286v-29l3.75 7.25 3.75 7.25z" fill="#3F3D3D" id="Group"/>
+                <path id="ans-leftArrow" class="arrow-hidden" d="M562 271.5l3.75-7.25 3.75-7.25v29l-3.75-7.25-3.75-7.25z" fill="#3F3D3D"/>
+                <path id="ans-rightArrow" class="arrow-hidden" d="M807.5 271.5l-3.75 7.25L800 286v-29l3.75 7.25 3.75 7.25z" fill="#3F3D3D" id="Group"/>
               </g>
               <g id="Additional Keyboard">
                 <g class="button" onclick="input('pi')" id="pi">
@@ -94,13 +94,13 @@
                 <path d="M891 405H111v585c0 53.625 43.875 97.5 97.5 97.5h585c53.625 0 97.5-43.875 97.5-97.5V405z" fill="#616161"/>
                 <path d="M793.5 112.5h-585c-53.625 0-97.5 43.875-97.5 97.5v219.375h780V210c0-53.625-43.875-97.5-97.5-97.5z" fill="#424242"/>
               </g>
-              <g id="Screen" class="screen" onclick="focusDisplay('main')">
+              <g id="main" class="screen">
                 <path id="main-screen" class="focus" d="M793.5 356.25h-585c-14.625 0-24.375-9.75-24.375-24.375V210c0-14.625 9.75-24.375 24.375-24.375h585c14.625 0 24.375 9.75 24.375 24.375v121.875c0 14.625-9.75 24.375-24.375 24.375z" fill="#9CCC65"/>
-                <text id="main-input" transform="translate(217.454 313.611)" class="no-select" font-family="Open Sans, sans-serif" font-size="110" font-weight="400" fill="#3f3d3d">
+                <text id="main-input" transform="translate(217.454 313.611)" class="no-select input" font-family="Open Sans, sans-serif" font-size="110" font-weight="400" fill="#3f3d3d">
                   0
                 </text>
-                <path id="leftArrow" class="arrow-hidden" d="M195 271.5l3.75-7.25 3.75-7.25v29l-3.75-7.25-3.75-7.25z" fill="#3F3D3D"/>
-                <path id="rightArrow" class="arrow-hidden" d="M809.5 271.5l-3.75 7.25L802 286v-29l3.75 7.25 3.75 7.25z" fill="#3F3D3D"/>
+                <path id="main-leftArrow" class="arrow-hidden" d="M195 271.5l3.75-7.25 3.75-7.25v29l-3.75-7.25-3.75-7.25z" fill="#3F3D3D"/>
+                <path id="main-rightArrow" class="arrow-hidden" d="M809.5 271.5l-3.75 7.25L802 286v-29l3.75 7.25 3.75 7.25z" fill="#3F3D3D"/>
               </g>
               <g id="Keyboard">
                 <g class="button" onclick="input(49)" id="one">
@@ -177,6 +177,7 @@
       <p id="advanced-text">Open Advanced</p>
       </div>
 
+    <script src="js/lib/watch.js" type="text/javascript"></script>
     <script src="js/config/keymap.js"></script>
     <script src="js/models/Display.js"></script>
     <script src="js/models/Operation.js"></script>
