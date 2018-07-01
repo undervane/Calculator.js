@@ -10,6 +10,59 @@ displayController.appendDisplay(4, "ans", "0");
 
 // Event Listeners
 
+var buttons = document.querySelectorAll(".button");
+
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", (e) => input(e));
+}
+
+// Functions
+
+/*  Input receives a key as parameter, checks if the key 
+    exists in keymap, and does the proper display and 
+    control flow operation  */
+
+function input(e){
+
+    let key = e.currentTarget.getAttribute('data');
+
+    console.log(key);
+
+    if (key in numbers){
+
+        operationController.current().text += numbers[key];
+
+    } else if (key == "calculate"){
+
+        operationController.calculate();
+
+    } else if (key == "clear"){
+
+        operationController.clear();
+
+    } else if (key == "deleteLast"){
+
+        operationController.delete('last');
+
+    } else if (key == "pi"){
+
+        operationController.current().text += "π";
+
+    } else if (key == "sqrt"){
+
+        operationController.current().text += "√";
+
+    } else if (key == "ans"){
+
+        operationController.getAns();
+
+    } else {
+
+        console.warn(`Key not recognized: ${key}`);
+
+    }
+}
+
 // Keyboard keyPress or keyDown event listeners
 
 var body = document.querySelector('body');
@@ -78,195 +131,6 @@ body.onkeypress = function(event) {
 }
 
 // Functions
-
-/*  Input receives a key as parameter, checks if the key 
-    exists in keymap, and does the proper display and 
-    control flow operation  */
-
-function input(key){
-
-    if (key in numbers){
-
-        operation.current().text += numbers[key];
-
-        main.update();
-
-    } else if (key in actions){
-
-        calculate();
-
-    } else if (key == "clear"){
-
-        allClear();
-
-    } else if (key == "deleteLast"){
-
-        operation.deleteLast();
-
-    } else if (key == "pi"){
-
-        operation.current().text += "π";
-
-        main.print(operation.current(), "input");
-
-    } else if (key == "sqrt"){
-
-        operation.current().text += "√";
-
-        main.print(operation.current(), "input");
-
-    } else if (key == "ans"){
-
-        getAns();
-
-    } else {
-
-        console.warn(`Key not recognized: ${key}`);
-
-    }
-}
-
-// Add ANS to main screen
-
-function getAns(){
-
-    if (operation.focus != undefined) {
-
-        let current = operation.current()
-
-        current.text += operation.focus.text;
-        main.print(current, "input");
-
-    }
-}
-
-// Reset screen and all variables to default value
-
-function allClear(){
-
-    if (main.currentOnDisplay == "0"){
-
-        operation.focus = undefined;
-        operation.delete('all');
-        ans.onDisplay = "0";
-        main.onDisplay = "0";
-
-    } else {
-
-        operation.delete('current');
-        main.onDisplay = "0";
-
-    }
-
-    main.positionIndicator();
-    ans.positionIndicator();
-
-}
-
-// Makes possible to show text by moving 
-// to the right or left on large operation
-
-function move(direction, display){
-
-    if ((operation.current().text.length > 9) & (display == "main")){
-
-        let text;
-
-        if ((direction == "right") & (operation.current.position > 0)){
-
-            text = determinePosition(-1, "main");
-
-            document.getElementById("input").innerHTML = text;
-
-            positionIndicator();
-    
-        } else if ((direction == "left") & (operation.current.position < operation.current().text.length - 9)){
-    
-            text = determinePosition(1, "main");
-
-            document.getElementById("input").innerHTML = text;
-
-            positionIndicator();
-    
-        }
-    } else if ((operation.focus.text.length > 4) & (display == "additional")){
-
-        let text;
-
-        if ((direction == "right") & (operation.focus.position > 0)){
-
-            text = determinePosition(-1, "additional");
-
-            document.getElementById("additional-input").innerHTML = text;
-
-            positionIndicator();
-    
-        } else if ((direction == "left") & (operation.focus.position < operation.focus.text.length - 4)){
-    
-            text = determinePosition(1, "additional");
-
-            document.getElementById("additional-input").innerHTML = text;
-
-            positionIndicator();
-    
-        }
-    }
-}
-
-// Determines the actual text to be displayed on screen
-
-function determinePosition(number, display){
-
-    if (display == "main"){
-
-        operation.current.position += number;
-        
-        return operation.current().text.slice(((operation.current().text.length - 9) - operation.current.position), (operation.current().text.length - operation.current.position));
-
-    } else if (display == "additional"){
-
-        operation.focus.position += number;
-        
-        return operation.focus.text.slice(((operation.focus.text.length - 4) - operation.focus.position), (operation.focus.text.length - operation.focus.position));
-
-    }
-
-}
-
-// When executed, does the proper operation
-
-function calculate(){
-
-    try {
-
-        let operation = operation.current();
-
-        let filteredOperation = operation.text.replace(/x/g,"*").replace(/−/g,"-").replace(/π/g,"Math.PI").replace(/√/g,"Math.sqrt").replace(/f/g, "").replace(/e/g, "Math.E");
-
-        operation.result = eval(filteredOperation).toString();
-
-        operation.mode = 'result';
-
-        main.update();
-
-        ans.object = operation;
-        ans.update()
-        
-        operation.new();
-
-    } catch(e) {
-
-        // If user writes a mathematically 
-        // incorrect operation, we throw an error
-
-        main.onDisplay = "Error";
-        operation.delete('current');
-
-    }
-
-    // positionIndicator();
-
-}
 
 function expand(){
 

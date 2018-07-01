@@ -72,7 +72,8 @@ class DisplayController {
         
         } else {
 
-            textToShow = text;
+            textToShow = text != "" ? text : "0";
+            console.log(textToShow);
 
         }
 
@@ -150,6 +151,76 @@ class DisplayController {
 
             leftArrow.classList.add('arrow-hidden');
             rightArrow.classList.add('arrow-hidden');
+
+        }
+
+    }
+
+    // Makes possible to show text by moving 
+    // to the right or left on large operation
+
+    move(direction, display){
+
+        if ((operation.current().text.length > 9) & (display == "main")){
+
+            let text;
+
+            if ((direction == "right") & (operation.current.position > 0)){
+
+                text = determinePosition(-1, "main");
+
+                document.getElementById("input").innerHTML = text;
+
+                positionIndicator();
+        
+            } else if ((direction == "left") & (operation.current.position < operation.current().text.length - 9)){
+        
+                text = determinePosition(1, "main");
+
+                document.getElementById("input").innerHTML = text;
+
+                positionIndicator();
+        
+            }
+        } else if ((operation.focus.text.length > 4) & (display == "additional")){
+
+            let text;
+
+            if ((direction == "right") & (operation.focus.position > 0)){
+
+                text = determinePosition(-1, "additional");
+
+                document.getElementById("additional-input").innerHTML = text;
+
+                positionIndicator();
+        
+            } else if ((direction == "left") & (operation.focus.position < operation.focus.text.length - 4)){
+        
+                text = determinePosition(1, "additional");
+
+                document.getElementById("additional-input").innerHTML = text;
+
+                positionIndicator();
+        
+            }
+        }
+    }
+
+    // Determines the actual text to be displayed on screen
+
+    determinePosition(number, display){
+
+        if (display == "main"){
+
+            operation.current.position += number;
+            
+            return operation.current().text.slice(((operation.current().text.length - 9) - operation.current.position), (operation.current().text.length - operation.current.position));
+
+        } else if (display == "additional"){
+
+            operation.focus.position += number;
+            
+            return operation.focus.text.slice(((operation.focus.text.length - 4) - operation.focus.position), (operation.focus.text.length - operation.focus.position));
 
         }
 

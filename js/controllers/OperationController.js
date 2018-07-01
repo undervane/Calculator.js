@@ -4,15 +4,66 @@ class OperationController{
     constructor(){
 
         this.records = [new Operation];
-        this.position = 0;
+        this.position = this.records.length - 1;
 
     }
-
-    input(text){
-
-        //Continue working here
-
+    
+    // Add ANS to main screen
+    
+    getAns(){
+    
+        if (operation.focus != undefined) {
+    
+            let current = this.current()
+    
+            current.text += operation.focus.text;
+            main.print(current, "input");
+    
+        }
     }
+    
+    // Reset screen and all variables to default value
+    
+    clear(){
+    
+        if (this.current().text == ""){
+    
+            this.delete('all');
+    
+        } else {
+    
+            this.delete('current');
+    
+        }
+    }
+
+    // When executed, does the proper operation
+
+    calculate(){
+
+        try {
+    
+            let operation = this.current();
+    
+            let filteredOperation = operation.text.replace(/x/g,"*").replace(/−/g,"-").replace(/π/g,"Math.PI").replace(/√/g,"Math.sqrt").replace(/f/g, "").replace(/e/g, "Math.E");
+    
+            operation.mode = 'result';
+
+            operation.result = eval(filteredOperation).toString();
+
+            this.records.push(new Operation);
+    
+        } catch(e) {
+    
+            // If user writes a mathematically 
+            // incorrect operation, we throw an error
+    
+            main.onDisplay = "Error";
+            operation.delete('current');
+    
+        }
+    }
+    
 
     change(direction){
 
@@ -73,30 +124,16 @@ class OperationController{
         switch (input){
 
             case 'current': 
-
-                let length = this.records.length - 1;
-                this.records[length] = new Operation;
-                break;
+                this.current().text = "";
+            break;
 
             case 'all': 
-            
-                this.records = [];
-                this.records[0] = new Operation;
-                break;
+                this.records = [new Operation];
+            break;
 
             case 'last': 
-            
                 let lastDeleted = this.current().text.slice(0, -1);
                 this.current().text = lastDeleted;
-            
-                if (this.current().text == ""){
-            
-                    main.onDisplay = "0";
-            
-                } else { main.update(); }
-            
-                positionIndicator();
-
             break;
 
         }
