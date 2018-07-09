@@ -32,6 +32,9 @@ class OperationController{
     
             operation.mode = 'result';
 
+            // Update to start using Wolfram Alpha API
+            // http://api.wolframalpha.com/v2/query?input=pi&appid=6W6YWG-8TK27HAGAQ
+
             operation.result = eval(filteredOperation).toString();
 
             this.records.push(new Operation);

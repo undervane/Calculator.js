@@ -26,8 +26,6 @@ function input(e){
 
     let key = e.currentTarget.getAttribute('data');
 
-    console.log(key);
-
     if (key in numbers){
 
         operationController.current().text += numbers[key];
@@ -124,11 +122,7 @@ body.onkeyup = function(event){
 
 body.onkeypress = function(event) {
 
-    console.log(event);
-
     var key = event.keyCode;
-
-    console.log(numbers);
 
     if (key in numbers){
         operationController.current().text += numbers[key];
