@@ -11,10 +11,4 @@ class Display {
 
     }
 
-    set setOperation(operation){
-
-        this.position = 0;
-        this.operation = operation;
-
-    }
 }

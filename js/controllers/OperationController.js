@@ -11,30 +11,13 @@ class OperationController{
     // Add ANS to main screen
     
     getAns(){
+
+        if (this.records[this.position - 1] != null){
     
-        if (operation.focus != undefined) {
-    
-            let current = this.current()
-    
-            current.text += operation.focus.text;
-            main.print(current, "input");
-    
+            this.current().text += this.records[this.position - 1].result;
+
         }
-    }
     
-    // Reset screen and all variables to default value
-    
-    clear(){
-    
-        if (this.current().text == ""){
-    
-            this.delete('all');
-    
-        } else {
-    
-            this.delete('current');
-    
-        }
     }
 
     // When executed, does the proper operation
@@ -52,6 +35,7 @@ class OperationController{
             operation.result = eval(filteredOperation).toString();
 
             this.records.push(new Operation);
+            this.position = this.records.length - 1;
     
         } catch(e) {
     

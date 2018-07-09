@@ -38,7 +38,7 @@ function input(e){
 
     } else if (key == "clear"){
 
-        operationController.clear();
+        displayController.clear();
 
     } else if (key == "deleteLast"){
 
@@ -52,7 +52,7 @@ function input(e){
 
         operationController.current().text += "√";
 
-    } else if (key == "ans"){
+    } else if (key == "getAns"){
 
         operationController.getAns();
 
@@ -77,7 +77,7 @@ body.onkeydown = function(event){
 
         // ESC and Delete Keys
 
-        allClear();
+        operationController.delete('last');
 
     } else if (key == 37){
 
@@ -124,9 +124,17 @@ body.onkeyup = function(event){
 
 body.onkeypress = function(event) {
 
-    var key = event.which || event.keyCode;
+    console.log(event);
 
-    input(key);
+    var key = event.keyCode;
+
+    console.log(numbers);
+
+    if (key in numbers){
+        operationController.current().text += numbers[key];
+    } else if (key == 13) {
+        operationController.calculate();
+    }
 
 }
 

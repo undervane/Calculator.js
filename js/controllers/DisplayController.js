@@ -29,9 +29,9 @@ class DisplayController {
 
     }
 
-    appendDisplay(positions, id, initialText){
+    // Public appendDisplay()
 
-        // console.log(initialText);
+    appendDisplay(positions, id, initialText){
 
         if ((id == "main" && this.displays.main == null) || (id != "main" && this.displays.main != null)){
 
@@ -52,6 +52,32 @@ class DisplayController {
 
     }
 
+    // Public clear()
+
+    // Reset screen and all variables to default value
+    
+     clear(){
+
+        if (this.onDisplay("main") == "0" && this.operationController.current().text == ''){
+    
+            operationController.delete('all');
+            
+            for (let display in this.displays) {
+
+                this.print(display, "0", "input");
+
+            }
+    
+        } else {
+    
+            operationController.delete('current');
+            this.print("main", "0", "input");
+    
+        }
+    }
+
+    // Public add()
+
     add(input){
 
         this.displays.main.operation.add(input);
@@ -59,9 +85,17 @@ class DisplayController {
 
     }
 
-    print(id, text, mode){
+    // Public onDisplay()
 
-        // console.log(text);
+    onDisplay(id){
+
+        return document.getElementById(id).querySelector("text").innerHTML;
+
+    }
+
+    // Private print()
+
+    print(id, text, mode){
 
         let textToShow;
 
@@ -83,7 +117,7 @@ class DisplayController {
 
     }
 
-    // Private Focus
+    // Private focus()
 
     focus(e){
 
@@ -97,7 +131,7 @@ class DisplayController {
         
     }
 
-    // Private Slicer
+    // Private slicer()
 
     slicer(text, mode, display){
         
@@ -115,6 +149,8 @@ class DisplayController {
 
         }  
     }
+
+    // Private updateArrow()
 
     updateArrow(text){
 
@@ -155,6 +191,8 @@ class DisplayController {
         }
 
     }
+
+    // Private move()
 
     // Makes possible to show text by moving 
     // to the right or left on large operation
@@ -205,6 +243,8 @@ class DisplayController {
             }
         }
     }
+
+    // Private determinePosition()
 
     // Determines the actual text to be displayed on screen
 
